@@ -30,15 +30,14 @@ services:
       - LARAVEL_DATABASE_USER=${ENV_MARIADB_USER}
       - LARAVEL_DATABASE_PASSWORD=${ENV_MARIADB_PASS}
     volumes:
-      - './:/app'
+      - app_data:/app
     depends_on:
       - mariadb
     labels:
       - traefik.enable=true
-      - traefik.http.routers.next-app.rule=Host(`laravel.eventskart.in`)
-      - traefik.http.routers.next-app.entrypoints=websecure
-      - traefik.http.routers.next-app.tls.certResolver=letsencrypt
-      - traefik.http.services.next-app.loadbalancer.server.port=8000
+
+volumes:
+  app_data: ./
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
