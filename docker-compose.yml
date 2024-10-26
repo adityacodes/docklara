@@ -37,7 +37,7 @@ services:
       - traefik.enable=true
 
 volumes:
-  app_data: ./
+  app_data:
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
