@@ -14,6 +14,7 @@ services:
       - MARIADB_PASSWORD=${ENV_MARIADB_PASS}
   myapp:
     image: docker.io/bitnami/laravel:latest
+    command: bash -c "cd /app && composer install"
     restart: always
     ports:
       - '8000:8000'
