@@ -7,8 +7,10 @@ services:
       - dokploy-network
     restart: always
     environment:
+      - MARIADB_HOST=mariadb
       - MARIADB_DATABASE=${ENV_MARIADB_DBNAME}
       - MARIADB_USER=${ENV_MARIADB_USER}
+      - MARIADB_ROOT_PASSWORD=${ENV_MARIADB_PASS}
       - MARIADB_PASSWORD=${ENV_MARIADB_PASS}
   myapp:
     image: docker.io/bitnami/laravel:latest
