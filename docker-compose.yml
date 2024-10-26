@@ -13,7 +13,9 @@ services:
       - MARIADB_ROOT_PASSWORD=${ENV_MARIADB_PASS}
       - MARIADB_PASSWORD=${ENV_MARIADB_PASS}
   myapp:
-    image: docker.io/bitnami/laravel:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     restart: always
     ports:
       - '8000:8000'
@@ -30,14 +32,9 @@ services:
       - LARAVEL_DATABASE_USER=${ENV_MARIADB_USER}
       - LARAVEL_DATABASE_PASSWORD=${ENV_MARIADB_PASS}
     volumes:
-      - app_data:/app
+      - .:/app
     depends_on:
       - mariadb
-    labels:
-      - traefik.enable=true
-
-volumes:
-  app_data:
 
 # Define a network, which allows containers to communicate
 # with each other, by using their container name as a hostname
